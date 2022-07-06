@@ -68,14 +68,14 @@ public class DBHelper extends SQLiteOpenHelper {
         return tasks;
     }
 
-    public DBHelper(MainActivity context) {
-        super(context);
-    }
+    //public DBHelper(MainActivity context) {
+        //super(context);
+    //}
 
 
 
 
-    public DBHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VER);
     }
 
