@@ -100,4 +100,29 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
 
     }
+
+    public ArrayList<Tasks> getTasks() {
+        ArrayList<Tasks> tasks = new ArrayList<Tasks>();
+        String selectQuery = "SELECT " + COLUMN_ID + ", "
+                + COLUMN_DESCRIPTION + ", "
+                + COLUMN_DATE
+                + " FROM " + TABLE_TASK;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String description = cursor.getString(1);
+                String date = cursor.getString(2);
+                Tasks obj = new Tasks(id, description, date);
+                tasks.add(obj);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return tasks;
+    }
+
 }
